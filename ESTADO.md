@@ -20,7 +20,7 @@
 - Animaciones: cortina (zv-mask), parallax (data-zv-par), títulos palabra a palabra (zv-split),
   botones con relleno. Respetan "reducir movimiento".
 - Bloque "Paso a paso" (zv-uso): pestañas Rostro/Cuerpo/Postura, 9 fotos de la misma persona (casazen-uso-*.jpg), entre rituales y comparar. Muestra cómo se usa, no resultados.
-- Pagos (2026-10-01): activos contra entrega + transferencia (métodos manuales). Textos de v2 cambiados a "Paga al recibir"; logos de tarjetas ocultos en producto. CyberSource (vía banco) y PayPal en trámite → cuando haya tarjeta, volver a mencionarla.
+- Pagos (2026-10-01): dropshipping → SIN contra entrega. Método real: transferencia BAC (manual). La 'Pasarela de pago de prueba' está activa solo para pruebas: desactivar antes de abrir. Textos v2: 'Compra 100% segura' + FAQ/pestaña explican transferencia BAC y 'pronto con tarjeta'. Pendiente: CyberSource vía BAC.
 - Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1
