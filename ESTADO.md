@@ -19,6 +19,7 @@
     las fotos originales siguen en el producto.
 - Animaciones: cortina (zv-mask), parallax (data-zv-par), títulos palabra a palabra (zv-split),
   botones con relleno. Respetan "reducir movimiento".
+- Bloque "Paso a paso" (zv-uso): pestañas Rostro/Cuerpo/Postura, 9 fotos de la misma persona (casazen-uso-*.jpg), entre rituales y comparar. Muestra cómo se usa, no resultados.
 - Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1
