@@ -22,7 +22,7 @@
 - Bloque "Paso a paso" (zv-uso): pestañas Rostro/Cuerpo/Postura, 9 fotos de la misma persona (casazen-uso-*.jpg), entre rituales y comparar. Muestra cómo se usa, no resultados.
 - Pagos (2026-10-01): dropshipping → SIN contra entrega. Método real: transferencia BAC (manual). La 'Pasarela de pago de prueba' está activa solo para pruebas: desactivar antes de abrir. Textos v2: 'Compra 100% segura' + FAQ/pestaña explican transferencia BAC y 'pronto con tarjeta'. Pendiente: CyberSource vía BAC.
 - Contacto (2026-10-01): WhatsApp +504 9802-7712, jhernandezfialloz@icloud.com, Tegucigalpa → pie de página, página Contacto, FAQ, botón flotante WhatsApp (sección zv-whatsapp en theme.liquid). Entrega ~12 días (producto, FAQ, política de envíos).
-- Envíos (2026-10-01): SOLO Honduras. Perfiles 'AutoDS Free Shipping' (los 4 variantes) y 'Perfil general': L 300 si subtotal <= L 1,999.99; gratis desde L 2,000. Zona internacional eliminada. Textos web: 'Envío gratis desde L 2,000'.
+- Envíos (2026-10-01): SOLO Honduras, ENVÍO GRATIS sin mínimo (perfiles 'AutoDS Free Shipping' y 'Perfil general'). Zona internacional eliminada. Textos web: 'Envío gratis a todo Honduras · Llega en aprox. 12 días'.
 - Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1

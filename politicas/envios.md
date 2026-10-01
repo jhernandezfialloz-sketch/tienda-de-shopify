@@ -9,7 +9,7 @@ Tiempo de entrega
 Tu pedido llega en aproximadamente 12 días a cualquier parte de Honduras, contados desde que confirmamos tu pago. Te enviamos el número de seguimiento para que sepas dónde va tu paquete. El plazo puede variar un poco según tu ciudad y la temporada (por ejemplo, días festivos).
 
 Costo de envío
-El envío es gratis en compras desde L 2,000. En compras menores, el envío cuesta L 300. El costo se muestra en la página de pago antes de que confirmes tu compra; no hay cobros adicionales después.
+El envío es gratis a cualquier parte de Honduras. No hay cobros adicionales por envío.
 
 Dirección de entrega
 Revisa bien tu dirección y número de teléfono antes de pagar. Si necesitas corregir algo, escríbenos lo antes posible por WhatsApp al +504 9802-7712 o desde nuestra página de contacto.
