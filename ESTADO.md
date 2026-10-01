@@ -44,6 +44,7 @@ Todos usan `templates/product.json` (sección `cz-producto`).
 - [x] Favicon (cz-favicon.svg)
 
 ## Pendiente del lado del usuario
+- [ ] Poner una clave REAL de OpenAI en la variable `OPENAI_API_KEY` del entorno (la actual es un texto de ejemplo) para generar las fotos (`fotos/plan-de-fotos.md`)
 - [ ] Cambiar nombre de la tienda "Mi tienda" → "CasaZen" (Configuración → Detalles de la tienda)
 - [ ] Pegar políticas de envíos, devoluciones y términos (`politicas/`) — sin permiso `write_legal_policies`
 - [ ] Añadir reseñas reales y fotos de antes/después cuando existan (editor del tema)

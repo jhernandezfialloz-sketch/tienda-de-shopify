@@ -23,3 +23,10 @@ Dirección de arte común (todas las fotos):
 | Galería de producto (×5 por producto) | 1:1 | Frontal fondo crema · 3/4 · detalle · en uso · con accesorios incluidos |
 
 Modelo: OpenAI gpt-image (edición con las fotos de catálogo como referencia, para que el producto sea el real).
+
+## Generación (listo para ejecutar)
+- Referencias del catálogo descargadas en `fotos-originales/` (espátula, masajeador, postura).
+- 27 fotos definidas en `fotos/prompts.json` (12 de secciones + 5 de galería por producto).
+- Ejecutar: `node fotos/generar-todas.mjs` (lee `OPENAI_API_KEY` del entorno). Guarda en `fotos/generadas/`.
+  Prueba barata primero: `node fotos/generar-todas.mjs --calidad low --solo zv-hero-1,zv-hero-2`.
+- Gasto estimado: ~1,5–2 $ (todas medium, hero en high).

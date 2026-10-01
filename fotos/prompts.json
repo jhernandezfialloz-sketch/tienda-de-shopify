@@ -1,0 +1,49 @@
+{
+  "estilo": "Fotografía editorial de producto para e-commerce. Luz natural suave de ventana lateral izquierda, sombras largas y difusas, misma hora del día. Paleta crema #F6F1EA, arena #ECE3D7, salvia #5F6F55 y toques terracota #B5654A; materiales lino, travertino, cerámica mate, madera clara, hojas de eucalipto. Producto idéntico a las referencias (forma, color, botones, acabados). Sin texto, sin logos, sin iconos, sin flechas, sin marcas de agua. Sin rostros reconocibles.",
+  "productos": {
+    "espatula": {
+      "descripcion": "espátula facial ultrasónica: cuerpo plano negro brillante con borde lateral plateado, cuchilla de acero cepillado en la punta, panel frontal con pequeñas leyendas grises y un botón circular",
+      "refs": ["espatula-1.jpg", "espatula-7.jpg", "espatula-2.jpg"]
+    },
+    "masajeador": {
+      "descripcion": "masajeador corporal de mano: carcasa blanca con asa curva color azul lavanda, anillo de encendido plateado arriba, cabezal inferior redondo, cable blanco; tres cabezales intercambiables (blanco liso, gris texturizado, blanco con 7 bolitas azul lavanda)",
+      "refs": ["masajeador-1.jpg", "masajeador-2.jpg", "masajeador-6.jpg"]
+    },
+    "postura": {
+      "descripcion": "corrector de postura inteligente: arco de silicona negra mate que rodea la nuca con dos almohadillas redondas con detalle azul en los extremos, y una cápsula ovalada negra que cuelga sobre la espalda con pequeña pantalla digital y botón",
+      "refs": ["postura-8.jpg", "postura-1.jpg", "postura-2.jpg"]
+    }
+  },
+  "fotos": [
+    { "id": "zv-hero-1", "productos": ["espatula"], "tamano": "1024x1280", "calidad": "high", "prompt": "La espátula reposa en diagonal sobre una bandeja de travertino crema, una gota de agua sobre la cuchilla, ramitas de eucalipto. Mucho aire vacío en la parte superior." },
+    { "id": "zv-hero-2", "productos": ["masajeador"], "prompt": "Vista cenital: el masajeador y sus tres cabezales alineados en fila sobre lino color arena." },
+    { "id": "zv-hero-3", "productos": ["postura"], "prompt": "El corrector de postura sobre tela de lino salvia, ángulo de 45 grados, luz lateral." },
+    { "id": "zv-ritual-rostro", "productos": ["espatula"], "prompt": "Primer plano de una mano usando la espátula sobre una mejilla húmeda con piel natural, el rostro recortado fuera de cuadro (solo mejilla y mandíbula)." },
+    { "id": "zv-ritual-rostro-hover", "productos": ["espatula"], "prompt": "Macro de la punta de acero de la espátula cubierta de gotas de agua finas, fondo crema desenfocado." },
+    { "id": "zv-ritual-cuerpo", "productos": ["masajeador"], "prompt": "El masajeador apoyado sobre un muslo cubierto parcialmente con una toalla de lino, luz cálida de tarde, piel natural." },
+    { "id": "zv-ritual-cuerpo-hover", "productos": ["masajeador"], "prompt": "Los tres cabezales intercambiables y el cabezal negro en composición geométrica cenital sobre arena, cada uno con su sombra." },
+    { "id": "zv-ritual-postura", "productos": ["postura"], "prompt": "Espalda de una persona sentada erguida ante un escritorio claro, camiseta blanca ligera, el corrector colocado en la nuca y la cápsula sobre la parte alta de la espalda; vista desde atrás, sin rostro." },
+    { "id": "zv-ritual-postura-hover", "productos": ["postura"], "prompt": "Bodegón: el corrector junto a una laptop cerrada y una taza de cerámica mate terracota sobre madera clara." },
+    { "id": "zv-comparar", "productos": ["espatula", "masajeador", "postura"], "tamano": "1536x864", "prompt": "Rincón sereno de baño-dormitorio con encimera de travertino: los tres productos colocados con naturalidad a los lados, toallas de lino, eucalipto en jarrón; el centro de la imagen queda despejado." },
+    { "id": "zv-garantia", "productos": ["espatula"], "prompt": "Caja de cartón kraft abierta con la espátula envuelta a medias en papel de seda crema, cordel de algodón." },
+    { "id": "zv-cierre", "productos": ["espatula", "masajeador", "postura"], "tamano": "2048x880", "prompt": "Bodegón panorámico amplio: la espátula a la izquierda, el masajeador y el corrector a la derecha sobre lino y travertino; el tercio central totalmente vacío y limpio para colocar un título encima." },
+
+    { "id": "espatula-galeria-1", "productos": ["espatula"], "prompt": "Foto frontal de catálogo de la espátula de pie, centrada, fondo crema liso #F6F1EA, sombra suave en el suelo." },
+    { "id": "espatula-galeria-2", "productos": ["espatula"], "prompt": "La espátula en vista tres cuartos, fondo crema liso, sombra suave." },
+    { "id": "espatula-galeria-3", "productos": ["espatula"], "prompt": "Detalle macro de la cuchilla de acero y el borde plateado, fondo crema." },
+    { "id": "espatula-galeria-4", "productos": ["espatula"], "prompt": "Mano deslizando la espátula por la mejilla y la nariz con piel húmeda, rostro recortado fuera de cuadro." },
+    { "id": "espatula-galeria-5", "productos": ["espatula"], "prompt": "La espátula junto a su cable USB enrollado y una toallita de lino, sobre travertino." },
+
+    { "id": "masajeador-galeria-1", "productos": ["masajeador"], "prompt": "Foto de catálogo del masajeador de perfil, centrado, fondo crema liso #F6F1EA, sombra suave." },
+    { "id": "masajeador-galeria-2", "productos": ["masajeador"], "prompt": "El masajeador en vista tres cuartos desde arriba mostrando el anillo de encendido, fondo crema liso." },
+    { "id": "masajeador-galeria-3", "productos": ["masajeador"], "prompt": "Detalle del cabezal con bolitas azul lavanda en primer plano, fondo crema." },
+    { "id": "masajeador-galeria-4", "productos": ["masajeador"], "prompt": "Masajeador en uso sobre la parte trasera del muslo o el abdomen, toalla de lino, piel natural." },
+    { "id": "masajeador-galeria-5", "productos": ["masajeador"], "prompt": "El masajeador con los cuatro cabezales y su cable ordenados alrededor, cenital sobre lino arena." },
+
+    { "id": "postura-galeria-1", "productos": ["postura"], "prompt": "Foto de catálogo frontal del corrector, centrado, fondo crema liso #F6F1EA, sombra suave." },
+    { "id": "postura-galeria-2", "productos": ["postura"], "prompt": "El corrector en vista tres cuartos mostrando el arco y la cápsula, fondo crema liso." },
+    { "id": "postura-galeria-3", "productos": ["postura"], "prompt": "Detalle macro de la cápsula ovalada con la pantalla digital encendida y el botón, fondo crema." },
+    { "id": "postura-galeria-4", "productos": ["postura"], "prompt": "Persona de espaldas con camiseta clara llevando el corrector en la nuca, de pie junto a una ventana, sin rostro." },
+    { "id": "postura-galeria-5", "productos": ["postura"], "prompt": "El corrector junto a su cable de carga enrollado sobre lino salvia." }
+  ]
+}
