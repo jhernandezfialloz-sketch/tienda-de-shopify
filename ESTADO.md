@@ -1,5 +1,20 @@
 # ESTADO del proyecto — CasaZen
 
+## Borrador nuevo: CasaZen v2 (recomendado)
+- Tema: **CasaZen v2** — gid://shopify/OnlineStoreTheme/192067207456 (SIN publicar)
+- Vista previa: https://h83add-wh.myshopify.com/?preview_theme_id=192067207456
+- Estilo: editorial. Fraunces (títulos, cursiva en el final) + DM Sans. Paleta: crema #F6F1EA,
+  arena #ECE3D7, tinta #221C18, gris #6E6259, salvia #5F6F55, salvia suave #DDE3D5, terracota #B5654A.
+- Secciones nuevas (prefijo `zv-`): hero (mosaico de 3 productos + sello), franja (texto en
+  movimiento), rituales (un bloque por producto con compra directa), comparar (spa vs casa),
+  garantia (sello giratorio), cierre, productos (tarjetas con compra rápida), producto (galería
+  deslizable, modelos en botones, cantidad, % descuento, pestañas, barra de compra fija).
+- Reutiliza cz-resenas, cz-antes-despues y cz-faq, que heredan los colores de v2 (variables --cz-* en body).
+- `layout/theme.liquid` carga zv-styles.css, zv-scripts.js y cz-scripts.js en todas las páginas.
+- Sin revisión visual: el entorno no tiene acceso de red a la tienda ni al CDN.
+
+## Borrador anterior: CasaZen v1
+
 - Tienda: h83add-wh.myshopify.com (país Honduras, moneda HNL)
 - Tema de trabajo: **CasaZen v1** — gid://shopify/OnlineStoreTheme/192066486560 (SIN publicar)
 - Tema en vivo: Horizon (gid://shopify/OnlineStoreTheme/191910379808)
