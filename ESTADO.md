@@ -11,7 +11,15 @@
   deslizable, modelos en botones, cantidad, % descuento, pestañas, barra de compra fija).
 - Reutiliza cz-resenas, cz-antes-despues y cz-faq, que heredan los colores de v2 (variables --cz-* en body).
 - `layout/theme.liquid` carga zv-styles.css, zv-scripts.js y cz-scripts.js en todas las páginas.
-- Sin revisión visual: el entorno no tiene acceso de red a la tienda ni al CDN.
+- Fotos IA (2026-10-01): 27 fotos gpt-image-2 (edición con fotos reales de referencia), en `fotos/generadas/`.
+  - 12 en Archivos de Shopify (`shopify://shop_images/casazen-*.jpg`) asignadas a portada, rituales,
+    comparar, garantía y cierre.
+  - 15 en los productos (5 c/u, alt empieza por "CasaZen –"), movidas a las posiciones 1-5.
+    La galería zv-producto muestra solo fotos con "CasaZen" en el alt (ajuste `media_tag`);
+    las fotos originales siguen en el producto.
+- Animaciones: cortina (zv-mask), parallax (data-zv-par), títulos palabra a palabra (zv-split),
+  botones con relleno. Respetan "reducir movimiento".
+- Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1
 
