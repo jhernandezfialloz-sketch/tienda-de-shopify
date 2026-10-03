@@ -24,6 +24,7 @@
 - Contacto (2026-10-03): a pedido del dueño se QUITARON teléfono y correo de la web (pie, FAQ, producto, página Contacto). Solo formulario de contacto + 'Tegucigalpa, Honduras'. Botón WhatsApp (zv-whatsapp) apagado y sin número; se reactiva desde el editor. Entrega ~12 días.
 - Envíos (2026-10-01): SOLO Honduras, ENVÍO GRATIS sin mínimo (perfiles 'AutoDS Free Shipping' y 'Perfil general'). Zona internacional eliminada. Textos web: 'Envío gratis a todo Honduras · Llega en aprox. 12 días'.
 - Reseñas (cz-resenas) OCULTAS ("disabled": true) en portada y producto hasta tener reseñas reales.
+- Antes/después enviados por el dueño (2026-10-03) NO usados: eran de otras tiendas (marca de agua, producto distinto) → engañoso y derechos de autor. Sección vacía hasta tener fotos reales con permiso.
 - Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1
@@ -35,10 +36,11 @@
 - Cómo se edita: Admin API (`themeFilesUpsert`) desde el conector de Shopify; las
   escrituras solo se permiten en temas NO publicados.
 
-## Productos
-1. Espátula Ultrasónica Facial 4 en 1 — L 1,199
-2. Masajeador Corporal Anticelulitis — L 1,899
-3. Corrector de Postura Inteligente — L 849 / L 1,099 (Type B / Type A)
+## Productos (renombrados 2026-10-03, títulos + descripción + SEO)
+1. Zen Glow – Espátula ultrasónica facial 4 en 1 — L 1,199
+2. Zen Sculpt – Masajeador corporal con cabezales intercambiables — L 1,899 (enchufe en fotos del proveedor parece europeo: VERIFICAR)
+3. Zen Align – Corrector de postura inteligente — L 849 / L 1,099 (Type B / Type A)
+(handles sin cambiar; las plantillas los usan)
 Todos usan `templates/product.json` (sección `cz-producto`).
 
 ## Diseño
