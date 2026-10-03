@@ -12,7 +12,7 @@ Costo de envío
 El envío es gratis a cualquier parte de Honduras. No hay cobros adicionales por envío.
 
 Dirección de entrega
-Revisa bien tu dirección y número de teléfono antes de pagar. Si necesitas corregir algo, escríbenos lo antes posible por WhatsApp al +504 9802-7712 o desde nuestra página de contacto.
+Revisa bien tu dirección y número de teléfono antes de pagar. Si necesitas corregir algo, escríbenos lo antes posible desde nuestra página de contacto.
 
 ¿Tu pedido no llega?
 Si pasó el tiempo estimado y no has recibido tu pedido, contáctanos desde nuestra página de contacto con tu número de pedido y lo revisamos contigo.
