@@ -23,6 +23,7 @@
 - Pagos (2026-10-01): dropshipping → SIN contra entrega. Método real: transferencia BAC (manual). La 'Pasarela de pago de prueba' está activa solo para pruebas: desactivar antes de abrir. Textos v2: 'Compra 100% segura' + FAQ/pestaña explican transferencia BAC y 'pronto con tarjeta'. Pendiente: CyberSource vía BAC.
 - Contacto (2026-10-03): a pedido del dueño se QUITARON teléfono y correo de la web (pie, FAQ, producto, página Contacto). Solo formulario de contacto + 'Tegucigalpa, Honduras'. Botón WhatsApp (zv-whatsapp) apagado y sin número; se reactiva desde el editor. Entrega ~12 días.
 - Envíos (2026-10-01): SOLO Honduras, ENVÍO GRATIS sin mínimo (perfiles 'AutoDS Free Shipping' y 'Perfil general'). Zona internacional eliminada. Textos web: 'Envío gratis a todo Honduras · Llega en aprox. 12 días'.
+- Reseñas (cz-resenas) OCULTAS ("disabled": true) en portada y producto hasta tener reseñas reales.
 - Pendiente: revisión visual (tienda con contraseña; pedir contraseña para revisar la vista previa).
 
 ## Borrador anterior: CasaZen v1
