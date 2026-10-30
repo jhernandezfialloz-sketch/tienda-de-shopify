@@ -14,11 +14,11 @@
     "db:deploy": "prisma migrate deploy",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
-    "db:seed": "tsx scripts/seed-base.ts",
-    "seed:demo": "tsx scripts/seed-demo.ts",
-    "demo:purge": "tsx scripts/purge-demo.ts",
-    "seed:inventario-inicial": "tsx scripts/seed-inventario-inicial.ts",
-    "user:create": "tsx scripts/create-user.ts"
+    "db:seed": "tsx --conditions=react-server scripts/seed-base.ts",
+    "seed:demo": "tsx --conditions=react-server scripts/seed-demo.ts",
+    "demo:purge": "tsx --conditions=react-server scripts/purge-demo.ts",
+    "seed:inventario-inicial": "tsx --conditions=react-server scripts/seed-inventario-inicial.ts",
+    "user:create": "tsx --conditions=react-server scripts/create-user.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
@@ -26,6 +26,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
     "zod": "^4.6.7"
   },
   "devDependencies": {

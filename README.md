@@ -11,3 +11,9 @@ header y footer) y publicar los cambios.
 
 Para empezar, abre Claude Code en este repositorio y escribe, por ejemplo:
 "Quiero montar mi tienda de Shopify".
+
+## TELOS (Distribuidora Telos)
+
+La carpeta [`telos/`](telos/) contiene **TELOS**, el sistema de Distribuidora Telos
+(sitio + panel administrativo: inventario, compras, ventas, métricas). Es un proyecto
+independiente de la tienda Shopify; ver [`telos/README.md`](telos/README.md).
