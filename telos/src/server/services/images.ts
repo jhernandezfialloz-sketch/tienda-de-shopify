@@ -2,6 +2,7 @@ import { randomBytes } from "node:crypto";
 import sharp from "sharp";
 import { db, transaction } from "@/lib/db";
 import { TelosError } from "@/lib/errors";
+import { slugify } from "@/lib/slug";
 import { assertCan, type Actor } from "@/server/auth/permissions";
 import { storage } from "@/server/storage";
 import { audit } from "./audit";
@@ -19,7 +20,9 @@ export async function addProductImage(actor: Actor, productId: string, file: Fil
 
   const input = Buffer.from(await file.arrayBuffer());
   const { data, info } = await sharp(input).rotate().resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true }).webp({ quality: 82 }).toBuffer({ resolveWithObject: true });
-  const key = `products/${product.code}/${Date.now()}-${randomBytes(4).toString("hex")}.webp`;
+  // El nombre original va en la clave para poder rastrear de qué archivo salió cada foto.
+  const original = slugify(file.name.replace(/\.[^.]+$/, "")) || "foto";
+  const key = `products/${product.code}/${Date.now()}-${randomBytes(4).toString("hex")}-${original}.webp`;
   const { url } = await storage().put(key, data, "image/webp");
 
   return transaction(async (tx) => {

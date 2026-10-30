@@ -5,21 +5,19 @@ Todo lo que no se ve en la foto queda como **PENDIENTE DE CONFIRMAR**.
 Los 10 productos se cargan con `npm run seed:inventario-inicial`, en estado
 **Borrador** (no visibles en la web), con stock 0 y sin precio ni costo.
 
-> Archivos: solo 5 fotos llegaron como archivo (en `fotos-productos/`). Las otras 8
-> (camiseta BOSS frontal y las 7 gorras) se vieron en la conversación, pero no hay
-> archivo en disco. Súbelas desde la ficha de cada producto en Telos Admin.
+Las 13 fotos están en `fotos-productos/` y el script las adjunta a cada producto
+(la primera de la lista es la portada). Volver a correrlo no duplica fotos.
 
 ## Camisetas (categoría CMT)
 
 | Código | Nombre interno | Color | Lo que se ve | Fotos | Pendiente de confirmar |
 |---|---|---|---|---|---|
-| TLS-CMT-001 | Camiseta AllSaints Spitalfields blanca | Blanco | Manga corta, cuello redondo; estampado negro "ALLSAINTS / SPITALFIELDS" en el pecho izquierdo; etiquetas colgantes verde oliva y blanca | Frente ✓ · espalda ✓* | Talla, precio, costo, stock, composición, autenticidad/proveedor |
-| TLS-CMT-002 | Camiseta AllSaints London negra | Negro | Manga corta, cuello redondo; estampado blanco "ALLSAINTS / LONDON" en el pecho izquierdo; etiqueta interior AllSaints; etiquetas colgantes | Frente ✓ · espalda ✓* | Ídem |
-| TLS-CMT-003 | Camiseta BOSS azul marino con puntos | Azul marino | Logo "BOSS" blanco y tres puntos (negro, blanco, rojo-naranja) al frente; franjas negro/beige/blanco en las mangas; cinta de rayas en el cuello; monograma "B" en la nuca | Espalda ✓ · frente (sin archivo) | Ídem |
+| TLS-CMT-001 | Camiseta AllSaints Spitalfields blanca | Blanco | Manga corta, cuello redondo; estampado negro "ALLSAINTS / SPITALFIELDS" en el pecho izquierdo; etiquetas colgantes verde oliva y blanca | Frente · espalda | Talla, precio, costo, stock, composición, proveedor |
+| TLS-CMT-002 | Camiseta AllSaints London negra | Negro | Manga corta, cuello redondo; estampado blanco "ALLSAINTS / LONDON" en el pecho izquierdo; etiqueta interior AllSaints; etiquetas colgantes | Frente · espalda | Ídem |
+| TLS-CMT-003 | Camiseta BOSS azul marino con puntos | Azul marino | Logo "BOSS" blanco y tres puntos (negro, blanco, rojo-naranja) al frente; franjas negro/beige/blanco en las mangas; cinta de rayas en el cuello; monograma "B" en la nuca | Frente · espalda | Ídem |
 
-\* Las fotos de espalda dicen "ALLSAINTS / SEND ME A POSTCARD / LONDON" (blanca y negra).
-Se asociaron a la camiseta del mismo color, pero **confirma que son la misma prenda** y
-no un modelo distinto (el frente blanco dice "Spitalfields" y la espalda "London").
+Las espaldas "ALLSAINTS / SEND ME A POSTCARD / LONDON" son de las mismas camisetas
+(confirmado por el dueño, 2026-10-30).
 
 ## Gorras (categoría GOR)
 
@@ -37,11 +35,18 @@ Ninguna gorra muestra la marca de forma legible → marca **PENDIENTE DE CONFIRM
 
 Pendiente en todas: marca, ajuste/talla (snapback, strapback o cerrada), precio, costo, stock y material.
 
-## Observaciones para el negocio
+## Autenticidad (respuesta del dueño, 2026-10-30)
 
-- **Marcas de terceros (AllSaints, BOSS):** la marca se registró tal como aparece en la prenda.
-  Confirma el proveedor y la autenticidad antes de publicarlas en la web con esa marca.
-- **Monogramas "LA" y "NY":** se parecen a logotipos de equipos de béisbol. Confirma con
-  el proveedor si son productos con licencia antes de anunciarlos.
-- **Tallas:** cuando sepas qué tallas tienes de cada camiseta, abre el producto → "+ Varias
-  tallas" y luego registra el stock en Inventario (tipo "Inventario inicial").
+Las camisetas con logotipos **AllSaints** y **BOSS** (TLS-CMT-001 a 003) y las gorras con
+monogramas **LA** y **NY** (TLS-GOR-004, 006 y 007) **no son producto original**.
+
+- En el sistema quedan sin marca, en **Borrador**, con la nota "NO ORIGINAL" en sus notas internas.
+- Vender como originales, o anunciar, prendas con marcas registradas de terceros que no lo son
+  es falsificación de marca: hay riesgo legal (decomiso, multas) y las redes sociales y
+  marketplaces eliminan esas publicaciones y pueden cerrar la cuenta.
+- TELOS no publicará estos productos en el sitio web ni en materiales de marketing.
+
+## Tallas
+
+Cuando sepas qué tallas tienes de cada producto, abre el producto → "+ Varias tallas" y
+luego registra el stock en Inventario (tipo "Inventario inicial").
