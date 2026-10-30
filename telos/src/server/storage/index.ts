@@ -1,13 +1,13 @@
 import "server-only";
 import { mkdir, writeFile, unlink } from "node:fs/promises";
 import path from "node:path";
+import { put, del } from "@vercel/blob";
 
 /**
  * Almacenamiento de objetos para imágenes. Los archivos NUNCA van en la base de datos:
  * se guarda solo la clave y la URL pública.
+ *  - "blob":  Vercel Blob (producción). Se activa solo si existe BLOB_READ_WRITE_TOKEN.
  *  - "local": carpeta UPLOADS_DIR (por defecto ./storage/uploads), servida por /uploads/[...key].
- *  - "s3": Cloudflare R2 / S3 / Supabase Storage (producción) — pendiente de conectar
- *    con las variables S3_* (ver docs/ARQUITECTURA.md).
  */
 export interface StorageDriver {
   put(key: string, body: Buffer, contentType: string): Promise<{ url: string }>;
@@ -36,8 +36,24 @@ const localDriver: StorageDriver = {
   },
 };
 
+const blobDriver: StorageDriver = {
+  async put(key, body, contentType) {
+    // La clave ya es única (marca de tiempo + aleatorio): no hace falta sufijo extra.
+    const result = await put(key, body, { access: "public", contentType, addRandomSuffix: false, cacheControlMaxAge: 31536000 });
+    return { url: result.url };
+  },
+  async delete(key) {
+    await del(key).catch(() => undefined);
+  },
+};
+
 export function storage(): StorageDriver {
-  const driver = process.env.STORAGE_DRIVER ?? "local";
-  if (driver === "local") return localDriver;
-  throw new Error(`STORAGE_DRIVER "${driver}" aún no está implementado. Usa "local" o implementa el driver S3 en src/server/storage.`);
+  const driver = process.env.STORAGE_DRIVER || (process.env.BLOB_READ_WRITE_TOKEN ? "blob" : "local");
+  if (driver === "blob") return blobDriver;
+  if (driver === "local") {
+    // En Vercel el disco es temporal: las fotos se perderían.
+    if (process.env.VERCEL) throw new Error("Falta conectar Vercel Blob (BLOB_READ_WRITE_TOKEN). Ver docs/PUBLICAR.md, paso 3.");
+    return localDriver;
+  }
+  throw new Error(`STORAGE_DRIVER "${driver}" no existe. Usa "blob" o "local".`);
 }

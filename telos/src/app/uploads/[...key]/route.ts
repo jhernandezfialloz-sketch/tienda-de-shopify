@@ -3,7 +3,7 @@ import { localPath } from "@/server/storage";
 
 const TYPES: Record<string, string> = { webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png" };
 
-/** Sirve las fotos del driver "local". En producción con S3/R2 las URLs apuntan al CDN. */
+/** Sirve las fotos del driver "local". En producción (Vercel Blob) las URLs apuntan directo al CDN de Blob. */
 export async function GET(_: Request, { params }: { params: Promise<{ key: string[] }> }) {
   const key = (await params).key.join("/");
   const file = localPath(key);

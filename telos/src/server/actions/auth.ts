@@ -21,7 +21,7 @@ export async function loginAction(_: unknown, form: FormData) {
       expires: expiresAt,
     });
   } catch (err) {
-    return { error: toTelosError(err).message };
+    return { error: toTelosError(err).message, email: String(form.get("email") ?? "") };
   }
   redirect("/admin");
 }

@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(__dirname, "src") } },
   test: {
     environment: "node",
-    env: { DATABASE_URL: testDb, TELOS_TIMEZONE: "America/Tegucigalpa" },
+    env: { DATABASE_URL: testDb, DATABASE_URL_UNPOOLED: testDb, TELOS_TIMEZONE: "America/Tegucigalpa" },
     include: ["tests/**/*.test.ts"],
     globalSetup: ["tests/global-setup.ts"],
     // Los tests de integración comparten una base de datos: correr en serie.

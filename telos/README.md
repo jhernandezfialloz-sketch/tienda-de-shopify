@@ -7,6 +7,7 @@ Sistema digital central de **Distribuidora Telos**: sitio público + Telos Admin
 - API REST: [`docs/API.md`](docs/API.md)
 - Inventario inicial desde fotos: [`docs/INVENTARIO-INICIAL.md`](docs/INVENTARIO-INICIAL.md)
 - Guía para Codex/Claude: [`AGENTS.md`](AGENTS.md)
+- **Publicar en internet (Vercel):** [`docs/PUBLICAR.md`](docs/PUBLICAR.md)
 
 ## Requisitos
 
@@ -20,8 +21,8 @@ npm install
 cp .env.example .env              # ajusta DATABASE_URL
 npm run db:deploy                 # crea las tablas
 npm run db:seed                   # categorías y configuración base
-npm run user:create -- --email tu@correo.com --name "Tu nombre"   # muestra la contraseña temporal
-npm run seed:inventario-inicial   # 10 productos reales en borrador (desde las fotos)
+npm run user:create -- --email tu@correo.com --name "Tu nombre"   # o usa /admin/primer-uso con SETUP_TOKEN
+npm run seed:inventario-inicial   # o el botón "Cargar inventario inicial" del dashboard
 npm run dev                       # http://localhost:3000/admin
 ```
 
@@ -32,12 +33,14 @@ Opcional: `npm run seed:demo` carga datos de prueba marcados como DEMO
 
 | Variable | Uso |
 |---|---|
-| `DATABASE_URL` | PostgreSQL principal |
+| `DATABASE_URL` | PostgreSQL principal (en Vercel/Neon: conexión con pooler) |
+| `DATABASE_URL_UNPOOLED` | Conexión directa para migraciones (en local, igual a `DATABASE_URL`) |
 | `DATABASE_URL_TEST` | Base de datos solo para tests (se vacía en cada corrida) |
 | `APP_URL` | URL pública (enlaces de recuperación de contraseña) |
 | `TELOS_TIMEZONE` | Zona horaria para mostrar fechas (por defecto `America/Tegucigalpa`) |
-| `STORAGE_DRIVER` | `local` (desarrollo) o `s3` (Fase 4: R2/S3) |
-| `S3_*` | Credenciales del almacenamiento de imágenes (producción) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob para fotos (producción). Sin él, se usa la carpeta local `storage/uploads` |
+| `UPLOADS_DIR` | Carpeta de fotos en modo local (opcional) |
+| `SETUP_TOKEN` | Clave para crear el primer dueño en `/admin/primer-uso` |
 
 ## Scripts
 

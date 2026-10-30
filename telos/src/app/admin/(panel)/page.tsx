@@ -8,6 +8,8 @@ import { formatHNL, toCents } from "@/lib/money";
 import { PageHeader, Section, Stat } from "@/components/ui/layout";
 import { LinkButton } from "@/components/ui/button";
 import { ActivityList } from "@/components/admin/activity-list";
+import { InitialInventoryButton } from "@/components/admin/initial-inventory-button";
+import { db } from "@/lib/db";
 
 export const metadata = { title: "Dashboard" };
 
@@ -17,7 +19,11 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
   const user = await requireUser();
   const { denegado } = await searchParams;
   const finance = can(user.role, "finance:read");
-  const [{ day, week, month, recentActivity, lowStock }, inv] = await Promise.all([dashboardData(), inventorySummary()]);
+  const [{ day, week, month, recentActivity, lowStock }, inv, realProducts] = await Promise.all([
+    dashboardData(),
+    inventorySummary(),
+    db.product.count({ where: { isDemo: false } }),
+  ]);
 
   const monthMargin = month.cogs === null ? null : grossMargin(month.revenue, month.cogs);
   const weekAov = averageOrderValue(week.revenue, week.orders);
@@ -34,6 +40,15 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           </>
         }
       />
+      {realProducts === 0 && can(user.role, "products:write") && (
+        <Section title="Empieza aquí" className="mb-6">
+          <p className="mb-3 text-sm text-muted">
+            Todavía no hay productos. Carga los 10 productos de tus fotos (3 camisetas y 7 gorras) en borrador, con sus fotos,
+            o crea uno nuevo desde Productos.
+          </p>
+          <InitialInventoryButton />
+        </Section>
+      )}
       {denegado && (
         <p className="mb-4 rounded-md bg-warn-soft px-3 py-2 text-sm text-warn">Tu rol no tiene acceso a esa sección ({denegado}).</p>
       )}

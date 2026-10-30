@@ -12,7 +12,7 @@ export function LoginForm() {
     <form action={action} className="flex flex-col gap-4">
       <FormError message={state?.error} />
       <Field label="Correo">
-        <Input name="email" type="email" autoComplete="email" required autoFocus />
+        <Input name="email" type="email" autoComplete="email" required autoFocus defaultValue={state?.email} key={state?.email} />
       </Field>
       <Field label="Contraseña">
         <Input name="password" type="password" autoComplete="current-password" required />

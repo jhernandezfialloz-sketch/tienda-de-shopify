@@ -43,7 +43,7 @@ Monolito modular (no microservicios: no se justifica para el tamaño de Telos).
                                            │ Prisma
                           PostgreSQL (fuente de verdad, CHECKs, triggers)
                                            │
-                        Almacenamiento de objetos (fotos: R2/S3; local en dev)
+                        Almacenamiento de objetos (fotos: Vercel Blob; local en dev)  
 ```
 
 Regla central: **la lógica de negocio vive en `src/server/services`**. Las páginas,
@@ -59,9 +59,9 @@ las acciones de formulario, la API y los futuros agentes de IA solo llaman servi
 | Validación | **Zod 4** | Mismo esquema para formularios y API. |
 | Estilos | **Tailwind CSS 4** + design system propio (`globals.css`, `src/components/ui`) | Sin librería de plantillas SaaS. |
 | Autenticación | Sesiones propias en DB (cookie httpOnly, token con hash SHA-256, scrypt) | Simple, auditable, sin dependencias; revocables al cambiar contraseña. |
-| Imágenes | `sharp` (WebP, 1600 px) + driver de almacenamiento (`local` / S3-compatible) | Archivos fuera de la DB. |
+| Imágenes | `sharp` (WebP, 1600 px) + driver de almacenamiento (`blob` = Vercel Blob / `local`) | Archivos fuera de la DB. El navegador reduce cada foto antes de subirla (límite de 4.5 MB por solicitud en Vercel). |
 | Tests | **Vitest** contra PostgreSQL real (`telos_test`) | La integridad del inventario se prueba con la base de datos de verdad. |
-| Despliegue recomendado | Vercel (app) + Neon o Supabase (Postgres con backups/PITR) + Cloudflare R2 (fotos) | Gestionado, barato a esta escala. **Pendiente de tu decisión** (implica cuentas y costos). |
+| Despliegue | Vercel (app) + Neon (Postgres, integrado desde Vercel) + Vercel Blob (fotos) | Una sola cuenta y todo desde el navegador. Migraciones automáticas en cada publicación (`vercel-build`). Guía: [`PUBLICAR.md`](./PUBLICAR.md). |
 
 ## 3. Esquema de base de datos
 
@@ -243,8 +243,8 @@ acción y endpoint verifica sesión y permiso en el servidor**.
 
 ## 12. Backups
 
-Producción en Postgres gestionado con **PITR** (Neon/Supabase: restauración a cualquier
-minuto de los últimos 7+ días) + `pg_dump` diario cifrado a R2 con retención 30 días.
+Producción en Postgres gestionado con **PITR** (Neon: restauración a cualquier
+minuto de los últimos 7+ días) + `pg_dump` diario cifrado a almacenamiento externo con retención 30 días.
 Protección adicional: soft delete de productos, movimientos inmutables, audit_logs.
 Probar una restauración cada trimestre.
 
@@ -256,5 +256,5 @@ Probar una restauración cada trimestre.
 | 1 Core | Auth + roles, productos y variantes, SKU, fotos, inventario, movimientos, ventas, pagos, compras, clientes/proveedores básicos, notificaciones, actividad, Cmd+K, API REST, tests | ✅ |
 | 2 Control | Gráfica de ventas, top/menos vendidos, ventas por canal, rentabilidad, inventario inmovilizado con valor atrapado, reportes con exportación CSV/Excel, ficha de cliente/proveedor, configuración y usuarios desde la UI | Siguiente |
 | 3 Website | Home editorial, `/productos` con filtros, ficha `/productos/TLS-…`, WhatsApp, SEO (sitemap, OG, schema.org), tracking de eventos | |
-| 4 Automatización | Despachador de eventos, webhooks, claves de API, AI write-tools, driver S3/R2 | |
+| 4 Automatización | Despachador de eventos, webhooks, claves de API, AI write-tools, envío de correos | |
 | 5 Expansión | Métricas sociales y funnel, importación CSV/Excel con preview, etiquetas con código de barras/QR, forecasting y sugerencias de reposición | |
