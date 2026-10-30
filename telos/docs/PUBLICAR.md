@@ -1,99 +1,105 @@
-# Publicar TELOS en internet
+# Publicar TELOS en internet (gratis)
 
-Todo se hace desde el navegador, en **una sola cuenta de Vercel**:
+TELOS se publica con dos servicios **gratuitos que permiten uso comercial** y no piden tarjeta:
 
 | Pieza | Servicio | Qué guarda |
 |---|---|---|
-| Aplicación | Vercel | El sistema (web + admin) |
-| Base de datos | Neon (se crea desde Vercel) | Productos, inventario, ventas… |
-| Fotos | Vercel Blob | Las fotos de los productos |
+| Sitio y sistema | **Netlify** (plan Free) | La aplicación y las fotos de los productos (Netlify Blobs) |
+| Base de datos | **Neon** (plan Free) | Productos, inventario, ventas, clientes… |
 
-Tiempo estimado: 20–30 minutos.
+Tiempo estimado: 20–30 minutos. Resultado: una dirección como `https://telos-hn.netlify.app`.
 
-> **Costo:** el plan gratuito de Vercel (Hobby) es solo para uso personal, no comercial.
-> TELOS es el sistema de un negocio, así que corresponde el plan **Pro** (unos US$20/mes).
-> Neon y Blob tienen niveles gratuitos que alcanzan para empezar.
+**Límites del plan gratis (suficientes para empezar):**
+- **Netlify** no cobra nada. Si algún mes se pasa de su cuota gratuita, el sitio se pausa
+  hasta el mes siguiente.
+- **Neon** guarda hasta 1 GB, que equivale a decenas de miles de ventas.
+- **Neon** "duerme" tras 5 minutos sin uso: la primera carga después de un rato tarda
+  1–2 segundos más.
 
 ---
 
 ## Paso 0 — Pasar el código a la rama principal
 
-Vercel publica la rama principal del repositorio (la rama por defecto en GitHub;
-hoy se llama `claude/new-session-j8avbg`). El código de TELOS se trabaja en otra rama
-y llega a la principal con un *pull request*: ábrelo en GitHub y pulsa
-**Merge pull request**. Desde entonces, cada cambio aprobado se publica solo.
+Abre el *pull request* de TELOS en GitHub y pulsa **Merge pull request → Confirm merge**:
+https://github.com/jhernandezfialloz-sketch/tienda-de-shopify/pull/1
 
-## Paso 1 — Crear la cuenta de Vercel
+## Paso 1 — Crear la base de datos en Neon
 
-1. Entra a **vercel.com** → **Sign Up** → **Continue with GitHub** (usa la misma cuenta
-   de GitHub donde está el repositorio `tienda-de-shopify`).
-2. Elige el plan **Pro**.
+1. Entra a **neon.com** → **Sign up** (con tu cuenta de Google o GitHub). Plan **Free**.
+2. **Create project**:
+   - Project name: `telos`
+   - Región: **AWS US East (N. Virginia)**
+   - Lo demás como viene → **Create**.
+3. En el panel del proyecto pulsa **Connect**. Verás una dirección que empieza por
+   `postgresql://`. Necesitas **dos** versiones:
+   - Con **Connection pooling** activado → cópiala: es tu **`DATABASE_URL`**
+     (contiene la palabra `-pooler`).
+   - Con **Connection pooling** desactivado → cópiala: es tu **`DATABASE_URL_UNPOOLED`**.
 
-## Paso 2 — Importar el proyecto
+   Guárdalas en un lugar seguro (son como contraseñas: no las compartas).
 
-1. En Vercel: **Add New… → Project**.
-2. Busca el repositorio **tienda-de-shopify** → **Import**.
-   (Si no aparece: **Adjust GitHub App Permissions** y dale acceso a ese repositorio).
-3. En la pantalla de configuración:
-   - **Project Name:** `telos`
-   - **Root Directory:** pulsa **Edit** y elige la carpeta **`telos`**. *(Importante.)*
-   - **Framework Preset:** Next.js (lo detecta solo).
-   - Abre **Environment Variables** y agrega estas dos:
+## Paso 2 — Crear el sitio en Netlify
 
-     | Name | Value |
-     |---|---|
-     | `SETUP_TOKEN` | Una clave larga que inventes (mín. 12 caracteres). **Guárdala**: la usarás en el paso 5. |
-     | `TELOS_TIMEZONE` | `America/Tegucigalpa` |
-4. Pulsa **Deploy**. **Este primer intento va a fallar** porque todavía no hay base de datos. Es normal.
+1. Entra a **netlify.com** → **Sign up** → **GitHub**. Plan **Free**.
+2. **Add new project → Import an existing project → GitHub**. Autoriza a Netlify y
+   elige el repositorio **tienda-de-shopify**.
+3. En la configuración:
+   - **Branch to deploy:** la rama principal (`claude/new-session-j8avbg`).
+   - **Base directory:** `telos` ← *importante*.
+   - Build command y Publish directory: déjalos como aparecen (los toma de `netlify.toml`).
+4. **Add environment variables** → agrega estas 4:
 
-## Paso 3 — Crear la base de datos y el almacén de fotos
+   | Key | Value |
+   |---|---|
+   | `DATABASE_URL` | La dirección **con** pooling (paso 1) |
+   | `DATABASE_URL_UNPOOLED` | La dirección **sin** pooling (paso 1) |
+   | `SETUP_TOKEN` | Una clave larga que inventes (mín. 12 caracteres). **Guárdala**: la usarás en el paso 4. |
+   | `TELOS_TIMEZONE` | `America/Tegucigalpa` |
 
-Dentro del proyecto `telos` en Vercel, pestaña **Storage**:
+5. **Deploy**. Tarda 2–4 minutos. Durante la publicación se crean solas las tablas de la base de datos.
 
-1. **Create Database → Neon (Serverless Postgres)** → acepta los términos →
-   región **Washington, D.C. (us-east-1)** → plan **Free** → **Create**.
-   Cuando pregunte, **conéctala al proyecto `telos`** con todos los entornos marcados.
-   Esto agrega solas las variables `DATABASE_URL` y `DATABASE_URL_UNPOOLED`.
-2. Otra vez **Create Database → Blob** → nombre `telos-fotos` → **Create** →
-   conéctalo al proyecto `telos`. Esto agrega `BLOB_READ_WRITE_TOKEN`.
+## Paso 3 — Ponerle nombre a la dirección
 
-Verifica en **Settings → Environment Variables** que existan: `DATABASE_URL`,
-`DATABASE_URL_UNPOOLED`, `BLOB_READ_WRITE_TOKEN`, `SETUP_TOKEN`, `TELOS_TIMEZONE`.
+1. Netlify te da una dirección al azar (ej. `https://glowing-cat-123.netlify.app`).
+2. **Project configuration → Change project name** → por ejemplo `telos-hn`
+   → queda `https://telos-hn.netlify.app` (si el nombre está libre).
+3. **Project configuration → Environment variables → Add a variable**:
+   `APP_URL` = tu dirección final (ej. `https://telos-hn.netlify.app`).
+4. **Deploys → Trigger deploy → Deploy project** para aplicar el cambio.
 
-## Paso 4 — Publicar
+## Paso 4 — Primer uso
 
-**Deployments** → en el último intento, menú **⋯ → Redeploy**. Al terminar (2–3 min)
-verás **Ready** y una dirección del tipo `https://telos-xxxx.vercel.app`.
-
-Durante la publicación se crean automáticamente todas las tablas de la base de datos.
-
-Luego, en **Settings → Environment Variables**, agrega `APP_URL` con esa dirección
-(ej. `https://telos-xxxx.vercel.app`) y vuelve a hacer **Redeploy**.
-
-## Paso 5 — Primer uso
-
-1. Abre `https://telos-xxxx.vercel.app/admin`. Te llevará a **Configurar TELOS**.
+1. Abre `https://telos-hn.netlify.app/admin` (con tu dirección). Te llevará a **Configurar TELOS**.
 2. Escribe la **clave de configuración** (tu `SETUP_TOKEN`), tu nombre, correo y una
    contraseña (mín. 10 caracteres). Esta pantalla funciona **una sola vez**.
-3. En el Dashboard pulsa **Cargar inventario inicial**: crea los 10 productos de tus
-   fotos (en borrador) con sus 13 fotos.
-4. Desde el teléfono, abre la misma dirección y agrégala a la pantalla de inicio.
+3. En el Dashboard pulsa **Cargar inventario inicial**. Verás el avance ("4 de 10"…);
+   al terminar te lleva a Productos con las 10 prendas y sus 13 fotos, en borrador.
+4. En el teléfono: abre la misma dirección → menú del navegador → **Agregar a pantalla de inicio**.
 
 ## Después
 
-- **Dominio propio** (ej. `admin.telos.hn`): Vercel → **Settings → Domains**.
+- **Cada mejora futura** se publica sola cuando se aprueba un *pull request* en la rama principal.
+- **Dominio propio** (ej. `telos.hn`, se paga aparte al registrador): Netlify → **Domain management**.
 - **Usuarios para tu equipo:** por ahora los crea Claude; la pantalla de usuarios llega en la Fase 2.
-- **Recuperación de contraseña por correo:** aún no envía correos (el enlace queda en los
-  registros del servidor). Si olvidas tu contraseña, pide ayuda a Claude.
-- **Respaldos:** Neon guarda historial para restaurar la base de datos; el plan gratuito
-  conserva poco tiempo. Cuando registres ventas reales, conviene subir a un plan de pago de Neon.
+- **Recuperación de contraseña por correo:** aún no envía correos. Si olvidas tu contraseña, pide ayuda a Claude.
+- **Respaldos:** el plan gratis de Neon guarda poco historial para restaurar. Cuando haya
+  ventas reales, conviene exportar un respaldo periódico (función prevista en la Fase 2).
 
 ## Si algo falla
 
 | Síntoma | Causa probable |
 |---|---|
-| El deploy falla con `DATABASE_URL_UNPOOLED` o "Environment variable not found" | La base de datos de Neon no está conectada al proyecto (paso 3.1). |
-| "Falta conectar Vercel Blob" al subir fotos | Falta el almacén Blob (paso 3.2). |
-| "El servidor no tiene SETUP_TOKEN configurado" | Falta la variable o tiene menos de 12 caracteres (paso 2); después de agregarla, Redeploy. |
+| El deploy falla con `P1001` / "Can't reach database server" | `DATABASE_URL_UNPOOLED` mal copiada (paso 1.3). |
+| El deploy falla con "Environment variable not found" | Falta alguna variable del paso 2.4. |
+| No encuentra la carpeta o el build no arranca | **Base directory** no es `telos`, o el pull request no está aprobado (paso 0). |
+| "El servidor no tiene SETUP_TOKEN configurado" | Falta la variable o tiene menos de 12 caracteres; después de agregarla, **Trigger deploy**. |
 | "La clave de configuración no es correcta" | Escribe exactamente el valor de `SETUP_TOKEN`. |
-| No aparece la carpeta `telos` en Root Directory | El código aún no está en la rama principal (paso 0). |
+| La carga del inventario se detiene | Vuelve a pulsar el botón: continúa donde quedó. |
+
+---
+
+### Alternativa de pago: Vercel
+
+El código también funciona en Vercel (Neon + Vercel Blob). Su plan gratuito **no permite uso
+comercial**, así que requiere el plan Pro (≈ US$20/mes). Variables: `DATABASE_URL`,
+`DATABASE_URL_UNPOOLED`, `BLOB_READ_WRITE_TOKEN`, `SETUP_TOKEN`; Root Directory `telos`.

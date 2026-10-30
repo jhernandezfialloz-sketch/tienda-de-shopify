@@ -43,7 +43,7 @@ Monolito modular (no microservicios: no se justifica para el tamaño de Telos).
                                            │ Prisma
                           PostgreSQL (fuente de verdad, CHECKs, triggers)
                                            │
-                        Almacenamiento de objetos (fotos: Vercel Blob; local en dev)  
+                        Almacenamiento de objetos (fotos: Netlify Blobs; local en dev)
 ```
 
 Regla central: **la lógica de negocio vive en `src/server/services`**. Las páginas,
@@ -59,9 +59,9 @@ las acciones de formulario, la API y los futuros agentes de IA solo llaman servi
 | Validación | **Zod 4** | Mismo esquema para formularios y API. |
 | Estilos | **Tailwind CSS 4** + design system propio (`globals.css`, `src/components/ui`) | Sin librería de plantillas SaaS. |
 | Autenticación | Sesiones propias en DB (cookie httpOnly, token con hash SHA-256, scrypt) | Simple, auditable, sin dependencias; revocables al cambiar contraseña. |
-| Imágenes | `sharp` (WebP, 1600 px) + driver de almacenamiento (`blob` = Vercel Blob / `local`) | Archivos fuera de la DB. El navegador reduce cada foto antes de subirla (límite de 4.5 MB por solicitud en Vercel). |
+| Imágenes | `sharp` (WebP, 1600 px) + driver de almacenamiento (`netlify` = Netlify Blobs / `blob` = Vercel Blob / `local`) | Archivos fuera de la DB. El navegador reduce cada foto antes de subirla (límite de 4.5–6 MB por solicitud en Vercel/Netlify). |
 | Tests | **Vitest** contra PostgreSQL real (`telos_test`) | La integridad del inventario se prueba con la base de datos de verdad. |
-| Despliegue | Vercel (app) + Neon (Postgres, integrado desde Vercel) + Vercel Blob (fotos) | Una sola cuenta y todo desde el navegador. Migraciones automáticas en cada publicación (`vercel-build`). Guía: [`PUBLICAR.md`](./PUBLICAR.md). |
+| Despliegue | **Netlify Free** (app + Netlify Blobs para fotos) + **Neon Free** (Postgres) | Gratis y con uso comercial permitido; todo desde el navegador. Migraciones automáticas en cada publicación (`netlify.toml`). El inventario inicial se carga por tandas por el límite de 10 s por solicitud. Vercel Pro queda como alternativa. Guía: [`PUBLICAR.md`](./PUBLICAR.md). |
 
 ## 3. Esquema de base de datos
 

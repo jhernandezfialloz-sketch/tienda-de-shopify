@@ -7,7 +7,9 @@
 // - Restricciones CHECK adicionales (stock >= 0, etc.) viven en la migración SQL.
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  // "rhel-openssl-3.0.x": motor para las funciones de Netlify (AWS Lambda, Amazon Linux 2023).
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {

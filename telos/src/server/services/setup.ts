@@ -67,7 +67,7 @@ export async function createFirstOwner(input: { token: string; name: string; ema
 /** Sube las fotos que el producto aún no tiene (reconoce el archivo por su nombre en la clave). La primera es la portada. */
 async function syncPhotos(actor: Actor, productId: string, photos: string[]) {
   const existing = await db.productImage.findMany({ where: { productId }, select: { storageKey: true } });
-  const tag = (file: string) => slugify(file.replace(/\.[^.]+$/, ""));
+  const tag = photoTag;
   let added = 0;
   for (const photo of photos) {
     if (existing.some((img) => img.storageKey.endsWith(`-${tag(photo)}.webp`))) continue;
@@ -88,16 +88,31 @@ async function syncPhotos(actor: Actor, productId: string, photos: string[]) {
   return added;
 }
 
+const photoTag = (file: string) => slugify(file.replace(/\.[^.]+$/, ""));
+
+/** Un producto inicial está completo si existe y tiene todas sus fotos. */
+async function isComplete(name: string, photos: string[]) {
+  const product = await db.product.findFirst({ where: { name }, select: { images: { select: { storageKey: true } } } });
+  if (!product) return false;
+  return photos.every((p) => product.images.some((img) => img.storageKey.endsWith(`-${photoTag(p)}.webp`)));
+}
+
 /**
  * Carga los 10 productos reales de las fotos (docs/INVENTARIO-INICIAL.md) en BORRADOR.
  * Idempotente: si un producto ya existe, solo completa sus fotos.
+ * Trabaja por tandas (`batchSize` productos por llamada) porque en Netlify gratis cada
+ * solicitud tiene un límite de 10 s; el botón del dashboard llama hasta que `remaining` = 0.
  */
-export async function loadInitialInventory(actor: Actor) {
+export async function loadInitialInventory(actor: Actor, opts: { batchSize?: number } = {}) {
   assertCan(actor, "products:write");
   await ensureBaseData();
   const categories = Object.fromEntries((await db.category.findMany()).map((c) => [c.code, c.id]));
+  const pending = [];
+  for (const seed of INITIAL_PRODUCTS) if (!(await isComplete(seed.name, seed.photos))) pending.push(seed);
+  const batch = pending.slice(0, opts.batchSize ?? pending.length);
+
   const log: string[] = [];
-  for (const seed of INITIAL_PRODUCTS) {
+  for (const seed of batch) {
     const existing = await db.product.findFirst({ where: { name: seed.name } });
     if (existing) {
       const added = await syncPhotos(actor, existing.id, seed.photos);
@@ -116,5 +131,5 @@ export async function loadInitialInventory(actor: Actor) {
     const added = await syncPhotos(actor, product.id, seed.photos);
     log.push(`✓ ${product.code} ${seed.name} (${added} foto/s)`);
   }
-  return log;
+  return { log, total: INITIAL_PRODUCTS.length, remaining: pending.length - batch.length };
 }

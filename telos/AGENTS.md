@@ -7,7 +7,7 @@ sitio público + **Telos Admin** para comprar, operar (inventario), vender y con
 Moneda: Lempira (HNL). Zona horaria: America/Tegucigalpa. Idioma de la UI: español.
 
 Arquitectura completa: [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md). API: [`docs/API.md`](docs/API.md).
-Publicación (Vercel + Neon + Vercel Blob): [`docs/PUBLICAR.md`](docs/PUBLICAR.md). Las migraciones se aplican solas en cada deploy (`vercel-build`).
+Publicación (Netlify + Neon, gratis; Vercel como alternativa): [`docs/PUBLICAR.md`](docs/PUBLICAR.md). Las migraciones se aplican solas en cada deploy (`netlify.toml` / `vercel-build`).
 
 ## Comandos
 

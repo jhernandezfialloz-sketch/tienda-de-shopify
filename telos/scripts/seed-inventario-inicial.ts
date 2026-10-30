@@ -4,7 +4,7 @@ import { ownerActor } from "./_actor";
 
 /** Carga el inventario inicial real (también disponible como botón en el dashboard). */
 async function main() {
-  const log = await loadInitialInventory(await ownerActor());
+  const { log } = await loadInitialInventory(await ownerActor());
   for (const line of log) console.log(line);
 }
 

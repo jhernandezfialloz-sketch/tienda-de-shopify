@@ -25,9 +25,12 @@ export async function firstOwnerAction(_: unknown, form: FormData) {
   redirect("/admin");
 }
 
-export async function loadInitialInventoryAction(): Promise<ActionResult> {
-  const result = await runAction((actor) => loadInitialInventory(actor));
-  if (!result.ok) return result;
-  revalidatePath("/admin", "layout");
-  redirect("/admin/productos");
+/** Procesa una tanda pequeña (2 productos) para no pasar el límite de tiempo por solicitud. */
+export async function loadInitialInventoryAction(): Promise<ActionResult<{ remaining: number; total: number }>> {
+  const result = await runAction(async (actor) => {
+    const { remaining, total } = await loadInitialInventory(actor, { batchSize: 2 });
+    return { remaining, total };
+  });
+  if (result.ok && result.data?.remaining === 0) revalidatePath("/admin", "layout");
+  return result;
 }

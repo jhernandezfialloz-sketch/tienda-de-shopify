@@ -7,7 +7,7 @@ Sistema digital central de **Distribuidora Telos**: sitio público + Telos Admin
 - API REST: [`docs/API.md`](docs/API.md)
 - Inventario inicial desde fotos: [`docs/INVENTARIO-INICIAL.md`](docs/INVENTARIO-INICIAL.md)
 - Guía para Codex/Claude: [`AGENTS.md`](AGENTS.md)
-- **Publicar en internet (Vercel):** [`docs/PUBLICAR.md`](docs/PUBLICAR.md)
+- **Publicar en internet gratis (Netlify + Neon):** [`docs/PUBLICAR.md`](docs/PUBLICAR.md)
 
 ## Requisitos
 
@@ -33,12 +33,12 @@ Opcional: `npm run seed:demo` carga datos de prueba marcados como DEMO
 
 | Variable | Uso |
 |---|---|
-| `DATABASE_URL` | PostgreSQL principal (en Vercel/Neon: conexión con pooler) |
+| `DATABASE_URL` | PostgreSQL principal (en Neon: conexión con pooler) |
 | `DATABASE_URL_UNPOOLED` | Conexión directa para migraciones (en local, igual a `DATABASE_URL`) |
 | `DATABASE_URL_TEST` | Base de datos solo para tests (se vacía en cada corrida) |
 | `APP_URL` | URL pública (enlaces de recuperación de contraseña) |
 | `TELOS_TIMEZONE` | Zona horaria para mostrar fechas (por defecto `America/Tegucigalpa`) |
-| `BLOB_READ_WRITE_TOKEN` | Vercel Blob para fotos (producción). Sin él, se usa la carpeta local `storage/uploads` |
+| `BLOB_READ_WRITE_TOKEN` | Solo si se publica en Vercel (fotos en Vercel Blob). En Netlify las fotos van a Netlify Blobs sin configurar nada; en local, a `storage/uploads` |
 | `UPLOADS_DIR` | Carpeta de fotos en modo local (opcional) |
 | `SETUP_TOKEN` | Clave para crear el primer dueño en `/admin/primer-uso` |
 

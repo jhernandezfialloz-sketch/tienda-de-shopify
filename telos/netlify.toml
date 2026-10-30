@@ -1,0 +1,11 @@
+# Netlify (plan gratuito). En la configuración del sitio, "Base directory" = telos.
+[build]
+  command = "npx prisma migrate deploy && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  # Las fotos originales del inventario inicial viajan con las funciones del servidor.
+  included_files = ["fotos-productos/**"]
