@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* TELOS — design system.
+   Editorial, monocromático, con un solo acento oliva (como las etiquetas de las prendas).
+   Los números (dinero, SKU, stock) usan cifras tabulares mono para leerse de un vistazo. */
+@theme {
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-paper: #f4f2ed;
+  --color-surface: #fbfaf7;
+  --color-ink: #121212;
+  --color-ink-2: #3a3a38;
+  --color-muted: #6f6d67;
+  --color-line: #dedad1;
+  --color-line-strong: #c4bfb3;
+  --color-olive: #4a5136;
+  --color-olive-soft: #e5e7dc;
+  --color-ok: #2f5d3a;
+  --color-ok-soft: #e1ebe2;
+  --color-warn: #8a6510;
+  --color-warn-soft: #f3ead2;
+  --color-danger: #9b2c1f;
+  --color-danger-soft: #f4dfdb;
+
+  --tracking-brand: 0.32em;
+}
+
+html { background: var(--color-paper); color: var(--color-ink); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+/* Foco visible y consistente para navegación por teclado. */
+:focus-visible { outline: 2px solid var(--color-olive); outline-offset: 2px; }
+
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
