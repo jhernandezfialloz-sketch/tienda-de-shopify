@@ -18,10 +18,10 @@ Tiempo estimado: 20–30 minutos.
 
 ## Paso 0 — Pasar el código a la rama principal
 
-Vercel publica la rama principal (`main`) del repositorio, y el código de TELOS
-todavía está en la rama `claude/new-session-8k1jfi`. Pide a Claude que abra un
-*pull request* hacia `main` y apruébalo en GitHub (**Merge pull request**). Desde
-entonces, cada cambio aprobado en `main` se publica solo.
+Vercel publica la rama principal del repositorio (la rama por defecto en GitHub;
+hoy se llama `claude/new-session-j8avbg`). El código de TELOS se trabaja en otra rama
+y llega a la principal con un *pull request*: ábrelo en GitHub y pulsa
+**Merge pull request**. Desde entonces, cada cambio aprobado se publica solo.
 
 ## Paso 1 — Crear la cuenta de Vercel
 
@@ -96,4 +96,4 @@ Luego, en **Settings → Environment Variables**, agrega `APP_URL` con esa direc
 | "Falta conectar Vercel Blob" al subir fotos | Falta el almacén Blob (paso 3.2). |
 | "El servidor no tiene SETUP_TOKEN configurado" | Falta la variable o tiene menos de 12 caracteres (paso 2); después de agregarla, Redeploy. |
 | "La clave de configuración no es correcta" | Escribe exactamente el valor de `SETUP_TOKEN`. |
-| No aparece la carpeta `telos` en Root Directory | El código aún no está en `main` (paso 0). |
+| No aparece la carpeta `telos` en Root Directory | El código aún no está en la rama principal (paso 0). |
